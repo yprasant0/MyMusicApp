@@ -1,0 +1,41 @@
+<%if signed_in?%>
+
+  <h1>Welcome Hi!!!</h1>
+
+
+  <% if !@topTracks.nil? %>
+    <div style="float: left">
+      <table border="1" cellpadding = "5" cellspacing = "5" >
+        <tr>
+          <th>Top Ones</th>
+        </tr>
+        <% @topTracks.each do |track| %>
+        <tr>
+          <td><a href="<%= track["url"] %>"><%= track["name"] %></a></td>
+        </tr>
+           <% end %>
+      </table>
+    </div>
+    <% else%>
+    <p>no tracks</p>
+  <%end %>
+
+  <% if !@similar_artist.nil? %>
+    <div style="float: left">
+      <table border="1" cellpadding = "5" cellspacing = "5">
+        <tr>
+          <th>similar Ones</th>
+        </tr>
+        <% @similar_artist.each do |similar| %>
+        <tr>
+          <td><a href="<%= similar["url"] %>"><%= similar["name"] %></a></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <%else %>
+    <p>No similar artist</p>
+  <%end %>
+
+
+<%end %>

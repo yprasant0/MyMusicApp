@@ -1,0 +1,34 @@
+<%= form_for :session, url: session_path do |form| %>
+  <%= stylesheet_link_tag "application.css" %>
+
+
+
+  <div class="loginbox">
+    <img src="avatar.png" class="avatar">
+    <h1>Login Here</h1>
+
+    <div class="text-field">
+      <%= form.label :Username %>
+      <%= form.text_field :email, type: 'email' %>
+    </div>
+
+    <div class="password-field">
+      <%= form.label :Password %>
+      <br>
+      <%= form.password_field :password %>
+    </div>
+
+    <div class="submit-field">
+      <%= form.submit %>
+    </div>
+
+
+    <div class="other-links">
+      <% if Clearance.configuration.allow_sign_up? %>
+        <%= link_to t(".sign_up"), sign_up_path %>
+      <% end %>
+      <%= link_to t(".forgot_password"), new_password_path %>
+    </div>
+  </div>
+
+<% end %>
