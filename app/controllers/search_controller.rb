@@ -4,20 +4,16 @@ class SearchController < ApplicationController
   def action
 
     query = params[:q]
+    #the instance variable for storing the toptracks info from the api call
     @topTracks = Artistsearch.get_artist_tracks(query)
-
+    #the instance variable for storing the similar artist info from the api call
     @similar_artist = Artistsearch.get_similar_artist(query)
 
     create_history
 
   end
 
-    def show_search_history
-        if signed_in?
-          user = User.find(current_user.id)
-          @user_searches = user.searches.order('created_at DESC').group_by { |c| c.created_at.to_date }
-      end
-    end
+  #function to store queries in the serach table
 
   def create_history
     if (signed_in? && !params[:q].blank?)
